@@ -12,4 +12,4 @@ Playload 2
 /etc/passwd
 ```
 * Trong Filter settings của Burp Suite, chọn Show all để thấy toàn bộ ảnh, css ...  
-<img src="./img/Screenshot 2025-07-23 at 22.40.11.png" width="400">
+<img src="./img/Screenshot 2025-07-23 at 22.40.11.png">
