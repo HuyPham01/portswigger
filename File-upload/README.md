@@ -41,3 +41,14 @@ Hãy thử sử dụng mã hóa URL (hoặc mã hóa URL kép) cho dấu chấm,
 Thêm dấu chấm phẩy hoặc ký tự byte rỗng được mã hóa URL trước phần mở rộng tệp. Nếu xác thực được viết bằng ngôn ngữ cấp cao như PHP hoặc Java, nhưng máy chủ xử lý tệp bằng các hàm cấp thấp hơn trong C/C++, chẳng hạn, điều này có thể gây ra sự khác biệt trong phần được coi là phần cuối của tên tệp: `exploit.asp`;.jpghoặc `exploit.asp%00.jpg`  
 Hãy thử sử dụng các ký tự unicode đa byte, có thể được chuyển đổi thành byte rỗng và dấu chấm sau khi chuyển đổi hoặc chuẩn hóa unicode. Các chuỗi như `xC0 x2E`, `xC4 xAE` hoặc `xC0 xAE` có thể được dịch thành `x2E` nếu tên tệp được phân tích cú pháp dưới dạng chuỗi UTF-8, nhưng sau đó được chuyển đổi thành ký tự ASCII trước khi sử dụng trong đường dẫn.  
 exploit.p.<b>php</b>hp 
+
+# Uploading files using PUT
+Điều đáng chú ý là một số máy chủ web có thể được cấu hình để hỗ trợ các yêu cầu `PUT`. Nếu phòng thủ thích hợp không có mặt, điều này có thể cung cấp một phương tiện thay thế để tải lên các tệp độc hại, ngay cả khi chức năng tải lên không có sẵn thông qua giao diện web.
+```
+PUT /images/exploit.php HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-httpd-php
+Content-Length: 49
+
+<?php echo file_get_contents('/path/to/file'); ?>
+```
